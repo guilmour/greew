@@ -1,0 +1,169 @@
+\documentclass[12pt]{article}
+
+\usepackage{sbc-template}
+\usepackage{multicol}
+
+\usepackage{graphicx,url}
+
+\usepackage[brazil]{babel}   
+%\usepackage[latin1]{inputenc}  
+\usepackage[utf8]{inputenc}  
+% UTF-8 encoding is recommended by ShareLaTex
+
+     
+\sloppy
+
+\title{Controle de Acesso Web e Android para Portas e Fechaduras Eletrônicas com Arduino}
+
+\author{Guilmour Rossi}
+
+
+\address{Curso de Engenharia de Computação -- Universidade Tecnológica Federal do Paraná 
+\\(UTFPR) - Oficinas de Integração I}
+
+
+
+
+\begin{document} 
+
+
+\maketitle
+\begin{center}
+\texttt{contato@guilmour.com}
+\end{center}
+
+%
+%\begin{abstract}
+%  This meta-paper describes the style to be used in articles and short papers
+ % for SBC conferences. For papers in English, you should add just an abstract
+  %while for the papers in Portuguese, we also ask for an abstract in
+  %Portuguese (``resumo''). In both cases, abstracts should not have more than
+  %10 lines and must be in the first page of the paper.
+%\end{abstract}
+     
+\begin{resumo} 
+  O projeto consiste no desenvolvimento e construção de um sistema de automação residencial com Arduino para a abertura e fechamento de portas, portões, trancas ou meios de acesso por meio de dispositivos digitais, tais como: celulares, computadores, cartões ou pulseiras; substituindo assim o uso de chaves físicas convencionais, trazendo um aumento de segurança com o monitoramento remoto sobre o estado da porta (aberta ou fechada) e quem teve acesso por ela.
+  \textbf{\\\\Palavras-chave:} tranca-eletrônica, arduino, monitoramento, segurança, automação residencial.
+\end{resumo}
+
+
+
+
+\section{Apresentação}
+
+
+
+O auxílio de máquinas e métodos automáticos para ajudar o ser humano em seu dia-a-dia é algo que vem sendo buscado à muito tempo, movido por um desejo inerente ao ser humano na tentativa de se obter progresso e melhores condições de vida. Depois da Revolução Industrial no final do século XVII, isso se intensificou, deixando claro a força e a importância da tecnologia e das máquinas automatizadas, e que estas agora fariam parte de nossa sociedade. Assim, perto até das histórias ficções-científicas mais criativas, foram sendo criados cada vez mais equipamentos e máquinas de inúmeros tipos e utilidades, tentando ser os mais independentes possíveis do ser humano afim de servi-lo de forma adequada e reduzir seus esforços. 
+
+Tais progressos podem ser percebidos em muitas áreas, mas muitas vezes por serem tecnologias caras ou avançadas, acabam não sendo difundidas em larga escala para todos. Este é o caso da automação industrial, de portas automáticas, trancas eletrônicas e similares. Cuja implementação acaba sendo feita apenas em locais que protegem objetos de valor, em grandes construções comerciais ou em residências das classes com maior poder aquisitivo, deixando a outra parcela da sociedade sem os benefícios práticos e de segurança destas tecnologias.
+
+Segurança esta, que é um fator essencial em qualquer ambiente pré-disposto a ser corrompido, como bancos, lojas, casas e apartamentos que estão vulneráveis tanto fisicamente,  por meio de portas, portões ou grades, quanto logicamente, por sistemas que podem ou não utilizar a internet. A maioria dos lares brasileiros ainda estão inseguros por sistemas de “controle de pessoas” ultrapassados, que são facilmente corrompidos, colocando vidas em risco, assim como a perda de um bem material. Dessa forma, aliando sistemas digitas com sistemas físicos poderemos ter um avanço enorme na segurança das residências ou estabelecimentos. Para exemplificar, pensaremos na porta de nossa casa: o que utilizamos para abri-lá e fecha-lá? Existe chave e maçaneta? Caso esquecermos de fecha-lá será nos avisado? O que acontece caso alguém tente utilizar outra chave? E se perdermos a nossa chave?
+
+Assim, é necessário um sistema que resolva essas questões de insegurança que muitos ainda convivem aliando-se as tecnologias atuais. Um sistema inteligente que não mais utilize uma mera chave, que é uma ferramenta facilmente copiável, mas sim um celular, ou cartão, ou algum \textit{gadget} que possa ser utilizado, elevando o nível de confiabilidade e desinformação das pessoas, proporcionando uma vida mais tecnológica e segura.
+
+Perder a chave não será mais um problema, pois sempre estaremos com com um mini-cartão ou alguma pulseira que contem uma ou mais  senhas criptografadas para dar acesso a diferentes portões. Também será possível utilizar um celular com \textit{NFC} ou \textit{Bluetooth} como “chave” de acesso  como segunda opção, assim como, saber exatamente se a porta esta aberta ou fechada, liberar um “chave” por algum tempo pre estabelecido para um funcionário. A ideia seria  que esse funcionário pudesse baixar o aplicativo e digitar a senha de acesso, que será feita avaliada através do celular com o sistema.
+
+Definição do que pode ser feito:
+\begin{itemize}
+\item Abrir e fechar uma porta, portão ou meio de acesso por meio de dispositivos digitais, tais como: celulares, cartões ou pulseiras.
+\item Liberar uma “Chave” por um tempo determinado.
+\item Saber se a porta esta aberta ou fechada e efetuar sua troca remotamente, assim como saber quem teve acesso.
+
+\end{itemize}
+
+
+\section{Análise Mercadológica} \label{sec:firstpage}
+
+Ideias e produtos similares não são novos no mercado, mas como já comentado, possuem valores altos de compra e instalação, além de nem todos terem as praticidades da nova era digital de \textit{smartphones}. Em uma busca rápida no \textit{Google Shopping}, a solução em fechadura digital mais barata, é o produto da empresa brasileira \textit{Intelbrás}, com preços à partir de R\$ 460,00 sem a instalação e possibilitando apenas o uso pelo uso de uma senha numérica. Outros itens de marcas internacionais como \textit{Samsung} e \textit{LG} custas ainda mais caros, à partir de R\$2000,00.
+
+\section{Análise Técnica}
+
+\subsection{Prototipação Simples}
+Estará baseado no núcleo do projeto com uma simples implementação sem muitos recursos, apenas para um estudo de viabilidade. Contará com um \textit{Arduino} Uno com USB, um motor, dois LEDS (um verde e um vermelho), uma \textit{protoboard} e um botão. 
+
+O sistema será projetado da seguinte forma: o \textit{Arduino} estará conectado ao botão que irá girar o motor, que seria a abertura da porta; o computador estará conectado pela USB, onde será inserido um código  e enviado para o \textit{Arduino}, que irá fazer a validação do mesmo. Feito isso, irá girar o motor, acenderá o \textit{LED} verde e um \textit{BIP} será gerado, caso não seja validado o motor não girará,  um \textit{LED} vermelho será acesso e dois \textit{BIPs} serão gerados. 
+
+\subsection{Prototipação Arduino + Android}
+
+	A segunda parte do projeto tem como função o teste de um celular em vez do computador para enviar o código de validação. Será preciso montar toda uma estrutura de rede favorável a comunicação entre os equipamentos digitais e a tranca com \textit{arduino}.\cite{igoe2011making} Será utilizado um celular com o sistema \textit{Android} conectado ao \textit{Arduino}, inicialmente, através de um cabo USB, para posteriormente, ser testado sistemas de comunicação sem fio, como, infravermelho, \textit{bluetooth}, \textit{wireless} ou \textit{NFC}. Também consiste na programação do aplicativo para \textit{Android}, onde será realizada uma pesquisa adequada para efetuar o sistema de comunicação.
+
+\subsubsection{Gerenciamento de múltiplos sistemas de acesso: }
+	Para que o sistema possa gerenciar múltiplos equipamentos é necessário implementar uma codificação específica para cada aparelho \textit{Arduino}, que será enviada para o dispositivo celular verificando se existe alguma senha de entrada no seu registro associada a ele e caso seja afirmativo enviará para o equipamento que a validará.  
+	
+	
+
+\subsubsection{Guardando e gerenciando as senhas no \textit{Arduino}:}
+	
+	Existem três opções possíveis para este caso: a primeira seria um celular com o aplicativo de gerenciamento, onde poderia fazer todo o controle de acesso determinando usuários, seus horários e respectivos dias de acesso; a segunda seria um modulo wifi, como se fosse um servidor WEB, que pudesse ser acessado por qualquer dispositivo da rede, permitindo que fossem feitas as configurações necessárias; a terceira poderia ser um cartão de memoria removível onde conteria os dados necessários, caso precisasse alterá-los deveria ser efetuado em um computador. 
+
+	A primeira opção possui de desvantagens que todo configuração deverá ser efetuada a poucos metros do aparelho e uma programação mais complexa no \textit{Android} será necessária.
+A segunda, necessitará de um modulo \textit{wireless} para \textit{Arduino} aumentando os custos de manufatura, consumo de energia e programação, no caso do desenvolvimento do servidor \textit{Web}, além de necessitar de um constante acesso a internet. Entretanto, com esse sistema seria possível determinar quase instantaneamente  o log de acesso, assim sabendo quem acessou e quando foi acessado, também permitindo fazer configurações remotamente, apenas sendo necessária uma conexão a internet.
+A terceira, demandaria mais trabalho, pois alem de necessitar um software especifico para cada sistema ou um conhecimento muito grande do usuário ele terá que retirar o cartão de memoria do sistema toda vez que quiser alterar suas configurações, não permitindo um acesso remotamente, e estará preso a um computador. Seria, mais interessante seu uso fixo como um acessório para aumentar a capacidade do LOG ou do gerenciamento de usuários e senhas. 
+
+\newpage
+
+
+
+\setlength{\columnseprule}{0pt}
+\begin{multicols}{2}
+\textbf{Equipamentos Projeto Inicial: }
+\begin{itemize}
+\item Arduino Uno 
+\item Cabo USB 
+\item Motor 
+\item Dois Leds
+\item Uma Protoboard
+\item Comunicador Wi-fi para Arduino
+\item Um botão
+\item Um computador
+\end{itemize}
+\vfill
+
+
+\textbf{Ferramentas Necessárias: }
+\begin{itemize}
+\item Alicate
+\item Cola Quente
+\item Ferro Solda
+\item Solda
+\item Fiação 
+\end{itemize} 
+
+\end{multicols}
+
+
+
+
+
+
+
+
+
+
+
+
+%\section{Sections and Paragraphs}
+
+
+%\subsection{Subsections}
+
+
+
+%\section{Figures and Captions}\label{sec:figs}
+
+
+
+
+
+%\section{Images}
+
+
+
+%\section{References}
+
+
+
+\bibliographystyle{apalike}
+\bibliography{sbc-template}
+
+\end{document}
