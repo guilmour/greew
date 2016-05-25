@@ -16,8 +16,12 @@ const int segE = 0;
 const int segF = 7;
 const int segG = 3;
 
-#define UPDATE_INTERVAL 1 //Tempo de espera (aproximado) em minutos até a proxima leitura
-const int intervalIterations = UPDATE_INTERVAL*50; //Cada iteração equivale a 20ms (usado na função)
+const int buttonPin = 13;
+const int relay = A0;
+
+
+#define UPDATE_INTERVAL 0.1 //Tempo de espera (aproximado) em minutos até a proxima leitura
+const int intervalIterations = (UPDATE_INTERVAL*50)*60; //Cada iteração equivale a 20ms (usado na função)
 
 /*
 Obs: Por causa da atualização frequente do display, esse UPDATE_INTERVAL se faz necessário, senão ele fica piscando loucamente...
@@ -28,6 +32,10 @@ int temperatura; // Variável que armazenará a temperatura medida
 
 
 void setup() {
+  pinMode(buttonPin, INPUT);
+  pinMode(relay, OUTPUT);
+  //Serial.begin(9600);
+
   pinMode(segA, OUTPUT);
   pinMode(segB, OUTPUT);
   pinMode(segC, OUTPUT);
@@ -45,6 +53,16 @@ void setup() {
 }
 
 void loop() {
+  int reading = digitalRead(buttonPin);
+  if (reading == HIGH){
+    digitalWrite(relay, LOW);
+    //Serial.println("Ta HIGH");
+  }
+  else if(reading == LOW){
+    digitalWrite(relay, HIGH);
+    //Serial.println("Ta LOW");    
+  }
+
   temperatura = temperaturaMedia();
 
   for(int i = 0; i < intervalIterations; i++) {
@@ -58,7 +76,7 @@ void displayNumber(int toDisplay) {
 #define DIGIT_ON  HIGH
 #define DIGIT_OFF  LOW
 
-  int digitos[4] = { toDisplay/10, toDisplay%10, 11, 12  };
+  int digitos[4] = { toDisplay/10, toDisplay%10, 11, 12 };
 
   long beginTime = millis();
 
