@@ -1,2 +1,8 @@
-# Oficinas1_2016-1
-Oficina de Integração 1 - (2016 - 1º Semestre)
+# Oficina de Integração I  2016.1
+
+Projeto universitário de solução em arduino para controle e manutenção de hortas domésticas de baixo custo.
+
+Equipe:
+Gianluigi Dal Toso [@gianluigitoso] (http://github.com/gianluigitoso)
+Guilmour Rossi [@guilmour] (http://github.com/guilmour)
+Samuel Henrique [@samueloph] (http://github.com/samueloph)
