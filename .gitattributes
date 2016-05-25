@@ -1,1 +1,4 @@
 *.tex linguist-language=Arduino
+*.bib linguist-language=Arduino
+*.aux linguist-language=Arduino
+*.sty linguist-language=Arduino
