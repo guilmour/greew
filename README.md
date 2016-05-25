@@ -5,4 +5,5 @@ university's project project in arduino to control and maintenance of low-cost h
 ### Team: <br>
 Gianluigi Dal Toso [@gianluigitoso] (http://github.com/gianluigitoso) <br>
 Guilmour Rossi [@guilmour] (http://github.com/guilmour) <br>
+Mateus Gomes [@mateuspgomes] (http://github.com/mateuspgomes) <br>
 Samuel Henrique [@samueloph] (http://github.com/samueloph) <br>
