@@ -1,6 +1,6 @@
-# Oficina de Integração I  2016.1
-
-university's project project in arduino to control and maintenance of low-cost home gardens.
+<center> ![greew](Imagens/greew-logo.png) </center>
+<hr>
+:herb: Greew is an university's project in arduino to controlling and maintenance of low-cost home gardens.
 
 ### Team: <br>
 Gianluigi Dal Toso [@gianluigitoso] (http://github.com/gianluigitoso) <br>
