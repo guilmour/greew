@@ -60,7 +60,7 @@ void loop() {
   }
   else if(reading == LOW){
     digitalWrite(relay, HIGH);
-    //Serial.println("Ta LOW");    
+    //Serial.println("Ta LOW");
   }
 
   temperatura = temperaturaMedia();
@@ -226,7 +226,7 @@ void lightNumber(int numberToDisplay) {
     digitalWrite(segG, SEGMENT_ON);
     break;
 
-  case 10:
+  case 10: // DIGITO APAGADO
     digitalWrite(segA, SEGMENT_OFF);
     digitalWrite(segB, SEGMENT_OFF);
     digitalWrite(segC, SEGMENT_OFF);
@@ -236,7 +236,7 @@ void lightNumber(int numberToDisplay) {
     digitalWrite(segG, SEGMENT_OFF);
     break;
 
-  case 11:
+  case 11: // SÍMBOLO DE GRAU
     digitalWrite(segA, SEGMENT_ON);
     digitalWrite(segB, SEGMENT_ON);
     digitalWrite(segC, SEGMENT_OFF);
@@ -246,7 +246,7 @@ void lightNumber(int numberToDisplay) {
     digitalWrite(segG, SEGMENT_ON);
     break;
 
-  case 12:
+  case 12: // LETRA C
     digitalWrite(segA, SEGMENT_ON);
     digitalWrite(segB, SEGMENT_OFF);
     digitalWrite(segC, SEGMENT_OFF);
@@ -256,6 +256,35 @@ void lightNumber(int numberToDisplay) {
     digitalWrite(segG, SEGMENT_OFF);
     break;
 
+  case 13: // LETRA L
+    digitalWrite(segA, SEGMENT_OFF);
+    digitalWrite(segB, SEGMENT_OFF);
+    digitalWrite(segC, SEGMENT_OFF);
+    digitalWrite(segD, SEGMENT_ON);
+    digitalWrite(segE, SEGMENT_ON);
+    digitalWrite(segF, SEGMENT_ON);
+    digitalWrite(segG, SEGMENT_OFF);
+    break;
+
+  case 14: // LETRA A
+    digitalWrite(segA, SEGMENT_ON);
+    digitalWrite(segB, SEGMENT_ON);
+    digitalWrite(segC, SEGMENT_ON);
+    digitalWrite(segD, SEGMENT_OFF);
+    digitalWrite(segE, SEGMENT_ON);
+    digitalWrite(segF, SEGMENT_ON);
+    digitalWrite(segG, SEGMENT_ON);
+    break;
+
+  case 14: // LETRA d
+    digitalWrite(segA, SEGMENT_OFF);
+    digitalWrite(segB, SEGMENT_ON);
+    digitalWrite(segC, SEGMENT_ON);
+    digitalWrite(segD, SEGMENT_ON);
+    digitalWrite(segE, SEGMENT_ON);
+    digitalWrite(segF, SEGMENT_OFF);
+    digitalWrite(segG, SEGMENT_ON);
+    break;
   }
 }
 
