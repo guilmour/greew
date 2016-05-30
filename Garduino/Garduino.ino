@@ -60,7 +60,7 @@ void loop() {
   }
   else if(reading == LOW){
     digitalWrite(relay, HIGH);
-    //Serial.println("Ta LOW");    
+    //Serial.println("Ta LOW");
   }
 
   temperatura = temperaturaMedia();
@@ -119,6 +119,55 @@ void displayNumber(int toDisplay) {
   //Wait for 20ms to pass before we paint the display again
 }
 
+void displayLoad() {
+
+#define DISPLAY_BRIGHTNESS  500
+#define DIGIT_ON  HIGH
+#define DIGIT_OFF  LOW
+
+  int digitos[4] = { 13, 0, 14, 15 };
+
+  long beginTime = millis();
+
+  for(int digit = 4 ; digit > 0 ; digit--) {
+    toDisplay = digitos[digit - 1];
+
+    //Turn on a digit for a short amount of time
+    switch(digit) {
+    case 1:
+      digitalWrite(digit1, DIGIT_ON);
+      break;
+    case 2:
+      digitalWrite(digit2, DIGIT_ON);
+      break;
+    case 3:
+      digitalWrite(digit3, DIGIT_ON);
+      break;
+    case 4:
+      digitalWrite(digit4, DIGIT_ON);
+      break;
+    }
+
+    //Turn on the right segments for this digit
+    lightNumber(toDisplay);
+
+    delayMicroseconds(DISPLAY_BRIGHTNESS);
+    //Display digit for fraction of a second (1us to 5000us, 500 is pretty good)
+
+    //Turn off all segments
+    lightNumber(10);
+
+    //Turn off all digits
+    digitalWrite(digit1, DIGIT_OFF);
+    digitalWrite(digit2, DIGIT_OFF);
+    digitalWrite(digit3, DIGIT_OFF);
+    digitalWrite(digit4, DIGIT_OFF);
+  }
+
+  while( (millis() - beginTime) < 10) ;
+  //Wait for 20ms to pass before we paint the display again
+}
+
 void lightNumber(int numberToDisplay) {
 
 #define SEGMENT_ON  LOW
@@ -126,7 +175,7 @@ void lightNumber(int numberToDisplay) {
 
   switch (numberToDisplay){
 
-  case 0:
+  case 0: // NÚMERO 0
     digitalWrite(segA, SEGMENT_ON);
     digitalWrite(segB, SEGMENT_ON);
     digitalWrite(segC, SEGMENT_ON);
@@ -136,7 +185,7 @@ void lightNumber(int numberToDisplay) {
     digitalWrite(segG, SEGMENT_OFF);
     break;
 
-  case 1:
+  case 1: // NÚMERO 1
     digitalWrite(segA, SEGMENT_OFF);
     digitalWrite(segB, SEGMENT_ON);
     digitalWrite(segC, SEGMENT_ON);
@@ -146,7 +195,7 @@ void lightNumber(int numberToDisplay) {
     digitalWrite(segG, SEGMENT_OFF);
     break;
 
-  case 2:
+  case 2: // NÚMERO 2
     digitalWrite(segA, SEGMENT_ON);
     digitalWrite(segB, SEGMENT_ON);
     digitalWrite(segC, SEGMENT_OFF);
@@ -156,7 +205,7 @@ void lightNumber(int numberToDisplay) {
     digitalWrite(segG, SEGMENT_ON);
     break;
 
-  case 3:
+  case 3: // NÚMERO 3
     digitalWrite(segA, SEGMENT_ON);
     digitalWrite(segB, SEGMENT_ON);
     digitalWrite(segC, SEGMENT_ON);
@@ -166,7 +215,7 @@ void lightNumber(int numberToDisplay) {
     digitalWrite(segG, SEGMENT_ON);
     break;
 
-  case 4:
+  case 4: // NÚMERO 4
     digitalWrite(segA, SEGMENT_OFF);
     digitalWrite(segB, SEGMENT_ON);
     digitalWrite(segC, SEGMENT_ON);
@@ -176,7 +225,7 @@ void lightNumber(int numberToDisplay) {
     digitalWrite(segG, SEGMENT_ON);
     break;
 
-  case 5:
+  case 5: // NÚMERO 5
     digitalWrite(segA, SEGMENT_ON);
     digitalWrite(segB, SEGMENT_OFF);
     digitalWrite(segC, SEGMENT_ON);
@@ -186,7 +235,7 @@ void lightNumber(int numberToDisplay) {
     digitalWrite(segG, SEGMENT_ON);
     break;
 
-  case 6:
+  case 6: // NÚMERO 6
     digitalWrite(segA, SEGMENT_ON);
     digitalWrite(segB, SEGMENT_OFF);
     digitalWrite(segC, SEGMENT_ON);
@@ -196,7 +245,7 @@ void lightNumber(int numberToDisplay) {
     digitalWrite(segG, SEGMENT_ON);
     break;
 
-  case 7:
+  case 7: // NÚMERO 7
     digitalWrite(segA, SEGMENT_ON);
     digitalWrite(segB, SEGMENT_ON);
     digitalWrite(segC, SEGMENT_ON);
@@ -206,7 +255,7 @@ void lightNumber(int numberToDisplay) {
     digitalWrite(segG, SEGMENT_OFF);
     break;
 
-  case 8:
+  case 8: // NÚMERO 8
     digitalWrite(segA, SEGMENT_ON);
     digitalWrite(segB, SEGMENT_ON);
     digitalWrite(segC, SEGMENT_ON);
@@ -216,7 +265,7 @@ void lightNumber(int numberToDisplay) {
     digitalWrite(segG, SEGMENT_ON);
     break;
 
-  case 9:
+  case 9: // NÚMERO 9
     digitalWrite(segA, SEGMENT_ON);
     digitalWrite(segB, SEGMENT_ON);
     digitalWrite(segC, SEGMENT_ON);
@@ -226,7 +275,7 @@ void lightNumber(int numberToDisplay) {
     digitalWrite(segG, SEGMENT_ON);
     break;
 
-  case 10:
+  case 10: // DIGITO APAGADO
     digitalWrite(segA, SEGMENT_OFF);
     digitalWrite(segB, SEGMENT_OFF);
     digitalWrite(segC, SEGMENT_OFF);
@@ -236,7 +285,7 @@ void lightNumber(int numberToDisplay) {
     digitalWrite(segG, SEGMENT_OFF);
     break;
 
-  case 11:
+  case 11: // SÍMBOLO DE GRAU
     digitalWrite(segA, SEGMENT_ON);
     digitalWrite(segB, SEGMENT_ON);
     digitalWrite(segC, SEGMENT_OFF);
@@ -246,7 +295,7 @@ void lightNumber(int numberToDisplay) {
     digitalWrite(segG, SEGMENT_ON);
     break;
 
-  case 12:
+  case 12: // LETRA C
     digitalWrite(segA, SEGMENT_ON);
     digitalWrite(segB, SEGMENT_OFF);
     digitalWrite(segC, SEGMENT_OFF);
@@ -256,6 +305,35 @@ void lightNumber(int numberToDisplay) {
     digitalWrite(segG, SEGMENT_OFF);
     break;
 
+  case 13: // LETRA L
+    digitalWrite(segA, SEGMENT_OFF);
+    digitalWrite(segB, SEGMENT_OFF);
+    digitalWrite(segC, SEGMENT_OFF);
+    digitalWrite(segD, SEGMENT_ON);
+    digitalWrite(segE, SEGMENT_ON);
+    digitalWrite(segF, SEGMENT_ON);
+    digitalWrite(segG, SEGMENT_OFF);
+    break;
+
+  case 14: // LETRA A
+    digitalWrite(segA, SEGMENT_ON);
+    digitalWrite(segB, SEGMENT_ON);
+    digitalWrite(segC, SEGMENT_ON);
+    digitalWrite(segD, SEGMENT_OFF);
+    digitalWrite(segE, SEGMENT_ON);
+    digitalWrite(segF, SEGMENT_ON);
+    digitalWrite(segG, SEGMENT_ON);
+    break;
+
+  case 14: // LETRA d
+    digitalWrite(segA, SEGMENT_OFF);
+    digitalWrite(segB, SEGMENT_ON);
+    digitalWrite(segC, SEGMENT_ON);
+    digitalWrite(segD, SEGMENT_ON);
+    digitalWrite(segE, SEGMENT_ON);
+    digitalWrite(segF, SEGMENT_OFF);
+    digitalWrite(segG, SEGMENT_ON);
+    break;
   }
 }
 
