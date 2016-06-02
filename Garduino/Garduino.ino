@@ -23,6 +23,12 @@ const int relay = A0;
 #define UPDATE_INTERVAL 0.1 //Tempo de espera (aproximado) em minutos até a proxima leitura
 const int intervalIterations = (UPDATE_INTERVAL*50)*60; //Cada iteração equivale a 20ms (usado na função)
 
+#define RELAY_ON LOW
+#define RELAY_OFF HIGH
+
+#define BUTTON_ON HIGH
+#define BUTTON_OFF LOW
+
 /*
 Obs: Por causa da atualização frequente do display, esse UPDATE_INTERVAL se faz necessário, senão ele fica piscando loucamente...
 */
@@ -54,12 +60,14 @@ void setup() {
 
 void loop() {
   int reading = digitalRead(buttonPin);
-  if (reading == HIGH){
-    digitalWrite(relay, LOW);
+  if (reading == BUTTON_ON){
+    // RELAY LIGADO
+    digitalWrite(relay, RELAY_ON);
     //Serial.println("Ta HIGH");
   }
-  else if(reading == LOW){
-    digitalWrite(relay, HIGH);
+  else if(reading == BUTTON_OFF){
+    // RELAY DESLIGADO
+    digitalWrite(relay, RELAY_OFF);
     //Serial.println("Ta LOW");
   }
 
@@ -119,6 +127,56 @@ void displayNumber(int toDisplay) {
   //Wait for 20ms to pass before we paint the display again
 }
 
+void displayStandBy() {
+
+#define DISPLAY_BRIGHTNESS  500
+#define DIGIT_ON  HIGH
+#define DIGIT_OFF  LOW
+
+  int digitos[4] = { 16, 16, 16, 16 };
+  int toDisplay = 0;
+
+  long beginTime = millis();
+
+  for(int digit = 4 ; digit > 0 ; digit--) {
+    toDisplay = digitos[digit - 1];
+
+    //Turn on a digit for a short amount of time
+    switch(digit) {
+    case 1:
+      digitalWrite(digit1, DIGIT_ON);
+      break;
+    case 2:
+      digitalWrite(digit2, DIGIT_ON);
+      break;
+    case 3:
+      digitalWrite(digit3, DIGIT_ON);
+      break;
+    case 4:
+      digitalWrite(digit4, DIGIT_ON);
+      break;
+    }
+
+    //Turn on the right segments for this digit
+    lightNumber(toDisplay);
+
+    delayMicroseconds(DISPLAY_BRIGHTNESS);
+    //Display digit for fraction of a second (1us to 5000us, 500 is pretty good)
+
+    //Turn off all segments
+    lightNumber(10);
+
+    //Turn off all digits
+    digitalWrite(digit1, DIGIT_OFF);
+    digitalWrite(digit2, DIGIT_OFF);
+    digitalWrite(digit3, DIGIT_OFF);
+    digitalWrite(digit4, DIGIT_OFF);
+  }
+
+  while( (millis() - beginTime) < 10) ;
+  //Wait for 20ms to pass before we paint the display again
+}
+
 void displayLoad() {
 
 #define DISPLAY_BRIGHTNESS  500
@@ -126,6 +184,7 @@ void displayLoad() {
 #define DIGIT_OFF  LOW
 
   int digitos[4] = { 13, 0, 14, 15 };
+  int toDisplay = 0;
 
   long beginTime = millis();
 
@@ -325,12 +384,21 @@ void lightNumber(int numberToDisplay) {
     digitalWrite(segG, SEGMENT_ON);
     break;
 
-  case 14: // LETRA d
+  case 15: // LETRA d
     digitalWrite(segA, SEGMENT_OFF);
     digitalWrite(segB, SEGMENT_ON);
     digitalWrite(segC, SEGMENT_ON);
     digitalWrite(segD, SEGMENT_ON);
     digitalWrite(segE, SEGMENT_ON);
+    digitalWrite(segF, SEGMENT_OFF);
+    digitalWrite(segG, SEGMENT_ON);
+    break;
+  case 16: // LETRA -
+    digitalWrite(segA, SEGMENT_OFF);
+    digitalWrite(segB, SEGMENT_OFF);
+    digitalWrite(segC, SEGMENT_OFF);
+    digitalWrite(segD, SEGMENT_OFF);
+    digitalWrite(segE, SEGMENT_OFF);
     digitalWrite(segF, SEGMENT_OFF);
     digitalWrite(segG, SEGMENT_ON);
     break;
