@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.3.4)  25 MAY 2016 00:05
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.3.4)  8 JUN 2016 09:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -391,8 +391,7 @@ Now handling font encoding U ...
    defining Unicode char U+2026 (decimal 8230)
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
-))
-No file relatorio.aux.
+)) (./relatorio.aux)
 \openout1 = `relatorio.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
@@ -408,6 +407,7 @@ LaTeX Font Info:    ... okay on input line 27.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
 LaTeX Font Info:    ... okay on input line 27.
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 27.
+
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
@@ -525,9 +525,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 45--47
  []
 
 
-Underfull \hbox (badness 3386) in paragraph at lines 45--47
-\OT1/ptm/b/it/12 Palavras-chave: \OT1/ptm/m/it/12 tranca-eletr[]onica, ar-duino
-, mo-ni-to-ra-mento, seguran[]a,
+Underfull \hbox (badness 1308) in paragraph at lines 45--47
+\OT1/ptm/b/it/12 Palavras-chave: \OT1/ptm/m/it/12 horta in-te-li-gente, ar-duin
+o, manuten[][]ao de jar-dim, cul-
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <13> not available
@@ -542,34 +542,25 @@ File: omsptm.fd
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 68.
-
-
-LaTeX Warning: Citation `igoe2011making' on page 2 undefined on input line 88.
-
-[2] [3] (./relatorio.bbl) [4] (./relatorio.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+ [2] [3]
+(./relatorio.bbl) [4] (./relatorio.aux) ) 
 Here is how much of TeX's memory you used:
- 3303 strings out of 493304
- 45118 string characters out of 6139872
- 124029 words of memory out of 5000000
+ 3305 strings out of 493304
+ 45146 string characters out of 6139872
+ 123073 words of memory out of 5000000
  6695 multiletter control sequences out of 15000+600000
  17681 words of font info for 39 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,10n,28p,931b,207s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
-w/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on relatorio.pdf (4 pages, 88871 bytes).
+ 38i,10n,28p,931b,220s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/e
+nc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/font
+s/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/tim
+es/utmri8a.pfb>
+Output written on relatorio.pdf (4 pages, 89817 bytes).
 PDF statistics:
  46 PDF objects out of 1000 (max. 8388607)
  32 compressed objects within 1 object stream
