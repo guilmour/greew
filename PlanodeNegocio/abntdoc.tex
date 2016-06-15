@@ -2,7 +2,8 @@
 \usepackage{verbatim}
 \usepackage[brazil]{babel}  
 \usepackage[utf8]{inputenc}  		
-
+\usepackage{nomencl}
+\usepackage{indentfirst}
 
 
 %\newcommand{\identacao}{\\[1mm] \hspace*{\parindent}}
@@ -13,15 +14,12 @@
 \begin{document}
 
 \title{Controle e Manutenção de Hortas e Jardins de Baixo Custo com Arduino}
-\author{Gianluigi Dal Toso, Guilmour Rossi, Leandro Vieira, Luís Felipe\\Werlang, Mateus Gomes e Samuel Henrique\\\texttt{contato@guilmour.com}\\\\\\
+\author{Gianluigi Dal Toso, Guilmour Rossi, Leandro Vieira, Luís Felipe\\Werlang, Mateus Gomes e Samuel Henrique\\\texttt{}\\\\\\
 \multicolumn{1}{p{.95\textwidth}}{\centering\emph{Engenharia de Computação - Universidade Tecnológica Federal do Paraná (UTFPR) \\Oficina de Integração I}}}
 
-\date{Junho de 2016}
+\date{Curitiba, \\Junho de 2016}
 
 \maketitle
-
-
-
 
 \newpage
 
@@ -31,47 +29,112 @@
 
 \newpage
 
-
-\section{Resumo}
-  O projeto consiste no desenvolvimento e construção de um sistema de automação residencial com \textit{Arduino} para a abertura e fechamento de portas, portões, trancas ou meios de acesso por meio de dispositivos digitais, tais como: celulares \textit{smartphones}, computadores ou dispositivos similares com acesso web; substituindo assim o uso de chaves físicas convencionais, trazendo um aumento de segurança com o monitoramento remoto sobre o estado da porta (aberta ou fechada) e quem teve acesso por ela.
-  \textbf{\\\\Palavras-chave:} tranca-eletrônica, tranca-eletromecânica, arduino, android, monitoramento, segurança, automação residencial.
-
+\listoffigures
 
 \newpage
 
-\section{Motivação}
-\subsection{Uma Breve História da Domótica}
-O auxílio de máquinas e métodos automáticos para ajudar o ser humano em seu dia-a-dia é algo que vem sendo buscado à muito tempo, sendo como um desejo inerente ao ser humano na tentativa de se obter progresso e melhores condições de vida. Depois da Revolução Industrial no final do século XVII, isso se intensificou, deixando claro a força e a importância da tecnologia e das máquinas automatizadas, e que estas agora fariam parte de nossa sociedade - aquela época apenas para fins fabris \cite{hobsbawm1} -. Muitos anos de passaram e já na década de 1920 as máquinas automatizadas começaram a ter um novo destino: a casa de famílias comuns. Onde os fabricantes já usavam de uma visão otimista e de termos como \textit{casa do futuro} \cite{bolzani}, a fim de promover seus produtos e levar ao consumidor uma imagem de progresso e de que o eletrodoméstico levaria um aumento de bem-estar para a sociedade. Assim, junto até das histórias de ficções-científicas mais criativas, foram sendo criados cada vez mais equipamentos e máquinas de inúmeros tipos e utilidades, tentando fazê-lo não apenas ter praticidade ou alguma forma de lazer, mas também economizar tempo nas tarefas do dia-a-dia de forma adequada e reduzir ao máximos seus esforços, onde desafios da domótica estão cada vez mais atrelados as tarefas mais comuns e de baixo nível de uma residência.
+\listoftables
 
-\subsection{O que é Domótica}
-Domótica é a tecnologia responsável pela administração de todos os recursos de qualquer tipo de habitação. O termo vem da junção das palavras “Domus”, que significa casa, e “Robótica”, que claro, está ligada ao ato de automatizar, de realizar ações de forma automática. \cite{chamusca}
+\makenomenclature
+
+\newpage
+\section{Introdução}
+
+	O modelo atual de agricultura adotado nas últimas décadas, apesar de sua elevada efetividade de produção, tem se mostrado destrutivo ao planeta, com inúmeros impactos ambientais e também sociais; erosões do solo, contaminação de rios, redução da biodiversidade, exclusão social e etc. \cite[p.~23]{medeiros}. A fim de minimizar ou até eliminar estes problemas, novas alternativas de agricultura vem sendo buscadas e aperfeiçoadas
+
+Neste ponto  de um sistema de controle e manutenção para jardins e hortas agroecológicas e de baixo custo em quintais e apartamentos, usando a plataforma de prototipagem eletrônica, Arduino. Com o uso de sensores de umidade, temperatura, luz, e o correto manuseio dessas informações, pode-se encontrar as condições ideias para cultivo nestes locais, maximizando o crescimento e qualidade das plantas e garantindo um cultivo saudável mesmo em lares onde a manutenção de uma pequena horta não se encaixaria na rotina dos moradores.
+  \textbf{\\\\Palavras-chave:} tranca-eletrônica, tranca-eletromecânica, arduino, android, monitoramento, segurança, automação residencial.
+
+\subsection{Objetivo Geral}
+Indicar o objetivo geral.
+
+\subsection{Objetivos Específicos}
+Indicar cada objetivo específico do projeto.
+
+\newpage
+
+\section{Metodologia}
+É uma descrição técnica de como será desenvolvido ou foi desenvolvido o trabalho. Devem estar detalhadas, de forma lógica, linear e cronológica, todas as etapas do projeto.
+Deve ser explicado como o produto será gerado, quais são os principais fundamentos (algoritmos, paradigmas, teorias) e tecnologias (ambientes de desenvolvimento, linguagens de programação, plataformas de hardware) a serem empregados.
+\subsection{Fundamentos}
+Indicar quais são os quais são os principais fundamentos (algoritmos, paradigmas, teorias) a serem empregados.
+Cada fundamento utilizado deve ser justificado.
+\subsection{Tecnologias}
+Indicar quais são os quais são as principais tecnologias (ambientes de desenvolvimento, linguagens de programação, plataformas de hardware) a serem empregadas. 
+Cada tecnologia utilizada deve ser justificada.
+
+\section{Recursos De Hardware E Software}
+Apresente aqui todos os recursos essenciais ao desenvolvimento do projeto. O(s) aluno(s) deve(m) mencionar também a origem dos recursos (próprios, externos ou da UTFPR) e a viabilidade do projeto.
+
+\subsection{Recursos de Hardware}
+Indique aqui os recursos de hardware como componentes digitais, analógicos, fontes de alimentação, baterias, sensores, atuadores, entre outros. Especifique a origem dos recursos de hardware.
+
+\subsection{Recursos de Software}
+Devem ser apresentados aqui os recursos de software, incluindo os principais fundamentos (teorias, algoritmos, paradigmas) e tecnologias (ambientes de desenvolvimento, linguagens de programação) a serem empregados. Especifique a origem dos recursos de software.
+
+\subsection{Viabilidade}
+Indique aqui a viabilidade técnica e financeira do projeto.
+
+\section{Contexto}
+Neste item deve ser explicitado quem é o cliente do projeto, se o projeto faz parte de um projeto maior, se ele é contratado por uma empresa externa a UTFPR e que se responsabilizará pelos recursos, entre outras possibilidades.
+
+\section{Projeto a ser Desenvolvido e Resultados Iniciais do Mesmo}
+Nesta seção deverá ser feita uma descrição funcional da solução proposta. O projeto deverá se decomposto em módulos funcionais (incluindo software e hardware). 
+Deverá ser apresentado um diagrama em blocos mostrando uma visão geral do sistema a ser desenvolvido, isto é, como os módulos funcionais se relacionam.
+Cada módulo funcional deve ser descrito individualmente. 
+Deve ser indicado também, de maneira sucinta, como cada módulo será implementado (linguagem de programação, hardware, etc).
+
+\subsection{Projeto de Software}
+O projeto de software do sistema deve ser feito através da Análise Orientada a Objetos, sendo necessária a apresentação dos seguintes itens:
+Levantamento de Requisitos:
+Requisitos Funcionais: descrevem o comportamento do sistema, suas ações para cada entrada, ou seja, é aquilo que tem que ser feito pelo sistema.
+Requisitos Não-Funcionais: são aqueles que expressam como deve ser feito. Em geral, se relacionam com padrões de qualidade como confiabilidade, performance, robustez, entre outros. São muito importantes, pois definem se o sistema será eficiente para a tarefa que se propõe a fazer ou não. Um sistema ineficiente certamente não será utilizado. Neles também são apresentados restrições e especificações de uso para os requisitos funcionais.
+Diagramas de Caso de Uso com:
+Descrição: o que o diagrama de casos de uso representa.
+Ator Principal: tem objetivos de usuários satisfeitos por uso do sistema a ser desenvolvido.
+Ator de Suporte: fornece um serviço (como, por exemplo, informações) para o sistema. Apresentar, caso o mesmo exista.
+Ator de Bastidor: tem interesse no comportamento do caso de uso, mas não é um ator principal ou de suporte (como, por exemplo, um órgão governamental). Apresentar, caso o mesmo exista.
+Pré-condições: condições necessárias para o diagrama poder ser executado.
+Pós-condições: resultados da execução do diagrama de casos de uso.
+Fluxo Básico: tarefas que consideram situações de perfeição.
+Fluxo Alternativo: variações em relação ao fluxo básico de eventos.
+Regras de Negócio: condições ou restrições sobre os processos de negócio.
+Diagrama de Classes, juntamente com:
+Dicionário de Informações.
+Diagrama de Objetos (Instâncias).
+Diagramas de Seqüência para cada Caso de Uso.
+
+\subsection{Projeto de Hardware}
+Deverá ser apresentado um diagrama em blocos mostrando uma visão geral do sistema a ser desenvolvido, isto é, como os módulos funcionais se relacionam.
+Cada módulo funcional deve ser descrito individualmente, utilizando os conceitos desenvolvidos nas disciplinas de Arquitetura e Organização de Computadores e Sistemas Microcontrolados.
+
+\section{Procedimentos de Teste e Validação}
+Aqui deve ser indicado como os diversos módulos do projeto serão testados e validados individualmente e em conjunto.
+Deverão ser estabelecidos os critérios de aceitação do projeto em termos de desempenho e do cumprimento de seus aspectos funcionais.
+Descrever aqui os testes de caixa preta para cada Caso de Uso do sistema.
+
+\section{Análise de riscos}
+Análise dos riscos potenciais do projeto e do impacto desses problemas no sucesso ou fracasso do mesmo. Deve ser seguida a metodologia apresentada na Disciplina de Engenharia de Software.
 
 
-Tais progressos podem ser percebidos em muitas áreas, mas muitas vezes por serem tecnologias caras ou avançadas, acabam não sendo difundidas em larga escala para todos. Este é o caso da automação industrial, de portas automáticas, trancas eletrônicas e similares. Cuja implementação acaba sendo feita apenas em locais que protegem objetos de valor, em grandes construções comerciais ou em residências das classes com maior poder aquisitivo, deixando a outra parcela da sociedade sem os benefícios práticos e de segurança destas tecnologias.
+\section{Cronograma do Projeto}
+Descrição de todas as fases do projeto, incluindo a seqüência de desenvolvimento de cada módulo, o tempo de desenvolvimento e as fases de teste e documentação. Para isto, devem ser utilizadas as seguintes ferramentas:
+Gráfico de Gant.
+Rede PERT/CPM.
 
-Segurança esta, que é um fator essencial em qualquer ambiente pré-disposto a ser corrompido, como bancos, lojas, casas e apartamentos que estão vulneráveis tanto fisicamente,  por meio de portas, portões ou grades, quanto logicamente, por sistemas que podem ou não utilizar a internet. A maioria dos lares brasileiros ainda estão inseguros por sistemas de “controle de pessoas” ultrapassados, que são facilmente corrompidos, colocando vidas em risco, assim como a perda de um bem material. Dessa forma, aliando sistemas digitas com sistemas físicos poderemos ter um avanço enorme na segurança das residências ou estabelecimentos. Para exemplificar, pensaremos na porta de nossa casa: o que utilizamos para abri-lá e fecha-lá? Existe chave e maçaneta? Caso esquecermos de fecha-lá será nos avisado? O que acontece caso alguém tente utilizar outra chave? E se perdermos a nossa chave?
-
-Assim, é necessário um sistema que resolva essas questões de insegurança que muitos ainda convivem aliando-se as tecnologias atuais. Um sistema inteligente que não mais utilize uma mera chave, que é uma ferramenta facilmente copiável, mas sim um celular, ou cartão, ou algum \textit{gadget} que possa ser utilizado, elevando o nível de confiabilidade e desinformação das pessoas, proporcionando uma vida mais tecnológica e segura.
-
-Perder a chave não será mais um problema, pois sempre estaremos com com um mini-cartão ou alguma pulseira que contem uma ou mais  senhas criptografadas para dar acesso a diferentes portões. Também será possível utilizar um celular com \textit{NFC} ou \textit{Bluetooth} como “chave” de acesso  como segunda opção, assim como, saber exatamente se a porta esta aberta ou fechada, liberar um “chave” por algum tempo pre estabelecido para um funcionário. A ideia seria  que esse funcionário pudesse baixar o aplicativo e digitar a senha de acesso, que será feita avaliada através do celular com o sistema.
-
-Definição do que pode ser feito:
-\begin{itemize}
-\item Abrir e fechar uma porta, portão ou meio de acesso por meio de dispositivos digitais, tais como: celulares, cartões ou pulseiras.
-\item Liberar uma “Chave” por um tempo determinado.
-\item Saber se a porta esta aberta ou fechada e efetuar sua troca remotamente, assim como saber quem teve acesso.
-
-\end{itemize}
-
-
-
-
+\section{Conclusões}
+As conclusões do trabalho devem ser expostas de maneira clara, lógica e concisa. Fale das dificuldades e facilidades encontradas durante a execução da proposta até o momento.
 
 %\appendix
 %\addcontentsline{toc}{chapter}{REFER\^ENCIAS}
-Feyman \cite{feynmann}
+Feyman asdasdasd \cite{altieri1}
 %\bibliographystyle{unsrt}
+\renewcommand\refname{}
 \bibliographystyle{abnt}
+
+\newpage
+\section{Referências Bibliográficas}
+\renewcommand\refname{}
 \bibliography{abntdoc}
 %\bibliography{periodicos_extenso,abntdoc}
 %\bibliography{macros,abntdoc}
