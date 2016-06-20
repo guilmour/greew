@@ -1,6 +1,21 @@
+/*
+Relay: In1 = Bomba; In2 = Lampada
+
+*/
+//BIBLIOTECAS
+#include <OneWire.h>
+#include <DallasTemperature.h>
+
+
 //PINAGEM
 
-const int pin_sensorTemp = A5; // Pino do Sensor de Tempetatura (LM35)
+#define ONE_WIRE_BUS 12 // Sensor de temperatura
+OneWire oneWire(ONE_WIRE_BUS);
+
+DallasTemperature sensors(&oneWire);
+DeviceAddress sensor1;
+
+const int sensorUmidade = A2;
 
 //Pinos do Display de 7 segmentos
 const int digit1 = 5;
@@ -17,7 +32,8 @@ const int segF = 7;
 const int segG = 3;
 
 const int buttonPin = 13;
-const int relay = A0;
+const int relayBomba = A0;
+const int relayLampada = A1;
 
 
 #define UPDATE_INTERVAL 0.1 //Tempo de espera (aproximado) em minutos até a proxima leitura
@@ -34,13 +50,20 @@ Obs: Por causa da atualização frequente do display, esse UPDATE_INTERVAL se fa
 */
 
 int temperatura; // Variável que armazenará a temperatura medida
+int umidade;
 
 
 
-void setup() {
+void setup(void) {
+  digitalWrite(relayBomba, RELAY_OFF);
+  digitalWrite(relayLampada, RELAY_OFF);
+  
+  sensors.begin();
+  sensors.getAddress(sensor1, 0);
+
   pinMode(buttonPin, INPUT);
-  pinMode(relay, OUTPUT);
-  //Serial.begin(9600);
+  pinMode(relayBomba, OUTPUT);
+  pinMode(relayLampada, OUTPUT);
 
   pinMode(segA, OUTPUT);
   pinMode(segB, OUTPUT);
@@ -56,26 +79,63 @@ void setup() {
   pinMode(digit4, OUTPUT);
 
   pinMode(13, OUTPUT);
+  
 }
 
 void loop() {
+  // Le a informacao do sensor
+  sensors.requestTemperatures();
+  float tempC = sensors.getTempC(sensor1);
+  
+  temperatura = round(tempC);
+  
+  umidade = analogRead(sensorUmidade);
+  
   int reading = digitalRead(buttonPin);
   if (reading == BUTTON_ON){
     // RELAY LIGADO
-    digitalWrite(relay, RELAY_ON);
+    digitalWrite(relayBomba, RELAY_ON);
+    digitalWrite(relayLampada, RELAY_ON);
     //Serial.println("Ta HIGH");
   }
   else if(reading == BUTTON_OFF){
     // RELAY DESLIGADO
-    digitalWrite(relay, RELAY_OFF);
+    digitalWrite(relayBomba, RELAY_OFF);
+    //digitalWrite(relayLampada, RELAY_OFF);
     //Serial.println("Ta LOW");
   }
-
-  temperatura = temperaturaMedia();
+ 
+  
+  if(temperatura <= 5){
+    digitalWrite(relayLampada, RELAY_ON);
+  }
+  else {
+    digitalWrite(relayLampada, RELAY_OFF);
+  }
+  
+  
+  //Solo umido
+  if (umidade > 0 && umidade < 600)
+  {
+    
+  }
+ 
+  //Solo com umidade moderada
+  if (umidade > 600 && umidade < 800)
+  {
+    
+  }
+ 
+  //Solo seco
+  if (umidade > 800 && umidade < 1024)
+  {
+    
+  }
 
   for(int i = 0; i < intervalIterations; i++) {
     displayNumber(temperatura);
   }
+  
 }
 
 void displayNumber(int toDisplay) {
@@ -405,8 +465,13 @@ void lightNumber(int numberToDisplay) {
   }
 }
 
+//float leTemperaturaLM35() {
+//  return (float(analogRead(pin_sensorTemp))*5/(1023))/0.01;
+//}
+
 float leTemperatura() {
-  return (float(analogRead(pin_sensorTemp))*5/(1023))/0.01;
+  sensors.requestTemperatures();
+  return sensors.getTempC(sensor1);
 }
 
 int temperaturaMedia() {
