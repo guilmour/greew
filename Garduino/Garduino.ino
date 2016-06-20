@@ -10,6 +10,7 @@ Relay: In1 = Bomba; In2 = Lampada
 //PINAGEM
 
 #define ONE_WIRE_BUS 12 // Sensor de temperatura
+#define TEMP_GATILHO 15 //EM GRAUS
 OneWire oneWire(ONE_WIRE_BUS);
 
 DallasTemperature sensors(&oneWire);
@@ -83,6 +84,9 @@ void setup(void) {
 }
 
 void loop() {
+  
+  digitalWrite(relayBomba, RELAY_OFF);
+  
   // Le a informacao do sensor
   sensors.requestTemperatures();
   float tempC = sensors.getTempC(sensor1);
@@ -106,7 +110,7 @@ void loop() {
   }
  
   
-  if(temperatura <= 5){
+  if(temperatura <= TEMP_GATILHO){
     digitalWrite(relayLampada, RELAY_ON);
   }
   else {
@@ -114,22 +118,14 @@ void loop() {
   }
   
   
-  //Solo umido
-  if (umidade > 0 && umidade < 600)
-  {
-    
-  }
+  //Solo umido 0 - 600
  
-  //Solo com umidade moderada
-  if (umidade > 600 && umidade < 800)
-  {
-    
-  }
+  //Solo com umidade moderada 600 - 800
  
   //Solo seco
   if (umidade > 800 && umidade < 1024)
   {
-    
+    digitalWrite(relayBomba, RELAY_ON);
   }
 
   for(int i = 0; i < intervalIterations; i++) {
