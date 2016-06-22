@@ -56,9 +56,6 @@ int umidade;
 
 
 void setup(void) {
-  digitalWrite(relayBomba, RELAY_OFF);
-  digitalWrite(relayLampada, RELAY_OFF);
-  
   sensors.begin();
   sensors.getAddress(sensor1, 0);
 
@@ -81,11 +78,14 @@ void setup(void) {
 
   pinMode(13, OUTPUT);
   
+  digitalWrite(relayBomba, RELAY_OFF);
+  digitalWrite(relayLampada, RELAY_OFF);
+  
 }
 
 void loop() {
   
-  digitalWrite(relayBomba, RELAY_OFF);
+  //digitalWrite(relayBomba, RELAY_OFF);
   
   // Le a informacao do sensor
   sensors.requestTemperatures();
@@ -104,7 +104,7 @@ void loop() {
   }
   else if(reading == BUTTON_OFF){
     // RELAY DESLIGADO
-    digitalWrite(relayBomba, RELAY_OFF);
+    //digitalWrite(relayBomba, RELAY_OFF);
     //digitalWrite(relayLampada, RELAY_OFF);
     //Serial.println("Ta LOW");
   }
