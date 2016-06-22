@@ -127,6 +127,11 @@ void loop() {
   {
     digitalWrite(relayBomba, RELAY_ON);
   }
+  
+  else if (umidade < 800)
+  {
+    digitalWrite(relayBomba, RELAY_OFF);
+  }
 
   for(int i = 0; i < intervalIterations; i++) {
     displayNumber(temperatura);
