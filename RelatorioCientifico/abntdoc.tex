@@ -8,6 +8,7 @@
 \usepackage{textcomp}
 \usepackage{graphicx}
 \usepackage{wrapfig}
+\usepackage{mathtools}
 
 
 %\newcommand{\identacao}{\\[1mm] \hspace*{\parindent}}
@@ -44,7 +45,7 @@
 \newpage
 \section{Introdução}
 
-O modelo atual de agricultura adotado nas últimas décadas, apesar de sua elevada efetividade de produção, tem se mostrado destrutivo ao planeta, com inúmeros impactos ambientais e também sociais; erosões do solo, contaminação de rios, redução da biodiversidade, exclusão social e etc. \cite[p.~23]{medeiros}. A fim de minimizar ou até eliminar estes problemas, novas alternativas de agricultura vem sendo buscadas e aperfeiçoadas, e com o avanço tecnológico e a consequente baixa de preços em componentes  eletrônicos, vê-se promissor a difusão de um sistema de controle e manutenção para jardins e hortas agroecológicas de baixo custo em quintais e apartamentos. Usando a plataforma de prototipagem eletrônica, \textit{Arduino}. Com o uso de sensores de umidade, temperatura, luz, e o correto manuseio dessas informações, pode-se encontrar as condições ideais para cultivo nestes locais, maximizando o crescimento e qualidade das plantas e garantindo um cultivo saudável mesmo em lares onde a manutenção de uma pequena horta não se encaixaria na rotina dos moradores.
+O modelo atual de agricultura adotado nas últimas décadas, apesar de sua elevada efetividade de produção, tem se mostrado destrutivo ao planeta, com inúmeros impactos ambientais e também sociais; erosões do solo, contaminação de rios, redução da biodiversidade, exclusão social e etc. \cite[p.~23]{medeiros}. A fim de minimizar ou até eliminar estes problemas, novas alternativas de agricultura vem sendo buscadas e aperfeiçoadas, e com o avanço tecnológico \cite{guterres} e a consequente baixa de preços em componentes  eletrônicos, vê-se promissor a difusão de um sistema de controle e manutenção para jardins e hortas agroecológicas de baixo custo em quintais e apartamentos. Usando a plataforma de prototipagem eletrônica, \textit{Arduino}. Com o uso de sensores de umidade, temperatura, luz, e o correto manuseio dessas informações, pode-se encontrar as condições ideais para cultivo nestes locais, maximizando o crescimento e qualidade das plantas e garantindo um cultivo saudável mesmo em lares onde a manutenção de uma pequena horta não se encaixaria na rotina dos moradores.
 
 Neste ponto  de um sistema de controle e manutenção para jardins e hortas agroecológicas e de baixo custo em quintais e apartamentos, usando a plataforma de prototipagem eletrônica, \textit{Arduino}. Com o uso de sensores de umidade, temperatura, luz, e o correto manuseio dessas informações, pode-se encontrar as condições ideais para cultivo nestes locais, maximizando o crescimento e qualidade das plantas e garantindo um cultivo saudável mesmo em lares onde a manutenção de uma pequena horta não se encaixaria na rotina dos moradores.
 
@@ -55,17 +56,21 @@ Neste ponto  de um sistema de controle e manutenção para jardins e hortas agro
 \section{Metodologia}
 \subsection{Fundamentos}
 
-Uma primeira análise das necessidades do projeto nos indica que a solução a ser desenvolvida se assemelha mais à um sistema de controle do que à um software comercial. Não existem muitas entidades a serem tratadas pela aplicação, nem relações complexas entre elas. Também não há necessidade de se conectar em bases de dados nem se preocupar com erros do usuário. O programa é executado somente pela máquina e uma vez que ele esteja funcionando não há mais interação alguma com o usuário. Esses motivos nos fazem acreditar que a melhor estratégia para o desenvolvimento do projeto seja o uso da programação estruturada. Usar orientação a objetos é desnecessário para esse projeto e acabaria indo contra o próprio objetivo desse paradigma que é a simplificação do problema. TODO P(água) = P(bomba) - p.g.h
+Uma primeira análise das necessidades do projeto nos indica que a solução a ser desenvolvida se assemelha mais à um sistema de controle do que à um software comercial. Não existem muitas entidades a serem tratadas pela aplicação, nem relações complexas entre elas. Também não há necessidade de se conectar em bases de dados nem se preocupar com erros do usuário. O programa é executado somente pela máquina e uma vez que ele esteja funcionando não há mais interação alguma com o usuário. Esses motivos nos fazem acreditar que a melhor estratégia para o desenvolvimento do projeto seja o uso da programação estruturada. Usar orientação a objetos é desnecessário para esse projeto e acabaria indo contra o próprio objetivo desse paradigma que é a simplificação do problema.
+
+Diversos conhecimentos gerais de física adquiridos ao longo da vida acadêmica foram utilizados na execução do projeto, o que é o esperado de qualquer trabalho manual desenvolvido para disciplinas de engenharia. Em especial, o básico de circuitos esteve sempre sendo exercitado nas montagens eletrônicas, e também os conhecimentos de hidrodinâmica foram utilizados para ajustar a velocidade com que a água de irrigação é ejetada sobre as plantas para evitar que estas fossem danificadas. Utilizamos por exemplo a \textbf{equação da continuidade}:
+\begin{equation}
+A_{1} \cdot v_{1} = A_{2} \cdot v_{2}
+\end{equation}
+\\ onde $A_{i}$ é a área da seção reta da tubulação e $v_{i}$ a velocidade com que o fluído (a água) está passando. E a \textbf{equação de Bernoulli}:
+\begin{equation}
+p_{1} + \frac{1}{2}  \rho  v_{1}^{2} + \rho  g  y_{1} = p_{2} + \frac{1}{2}  \rho  v_{2}^{2} + \rho  g  y_{2}
+\end{equation}
+\\ onde $y_{i}$, $v_{i}$ e $p_{i}$, são respectivamente a altura, a velocidade e a pressão do fluído que entra por uma parte da tubulação e que sai pela outra parte da mesma. \cite{halliday2008ondas}
+
 \subsection{Tecnologias}
 
 O desenvolvimento de todo o código foi feito através da plataforma \textit{Arduino IDE} (Ambiente de Desenvolvimento Integrado, da sigla em Inglês), fornecida pelos próprios desenvolvedores do \textit{Arduino}. Essa IDE é simples e direta, e tenta suprir todas as necessidades para projetos de pequeno e médio porte; é possível verificar a integridade do código e enviar o mesmo para o \textit{Arduino}. Além disso, toda a sintaxe modificada da linguagem C++ para o Arduino é identificada pela IDE e ela ainda apresenta o \textit{Serial Monitor}, ferramenta com a qual é possível (após definição pelo código) receber informações da placa de prototipagem diretamente por um console na tela do computador. Para a organização do código utilizamos o controlador de versão e gerenciador de código-fonte \textit{git}, juntamente com a plataforma online \textit{Github}. Não houve uma máquina única utilizada para o desenvolvimento do projeto. Todas as ferramentas utilizadas são livres e funcionam em diferentes plataformas. Diferentes usuários, com diferentes hardwares e sistemas operacionais desenvolveram simultaneamente sem dificuldades. Praticamente qualquer computador moderno (fabricado pelo menos nos últimos dez anos) já é o suficiente para poder executar e colaborar no desenvolvimento do projeto.
-
-
-
-\section{Recursos De Hardware E Software}
-\subsection{Recursos de Hardware}
-
-O principal recurso de hardware utilizado no projeto foi o controlador \textit{Arduino}, fornecido aos alunos pelo professor da disciplina juntamente com uma placa de ensaio (protoboard), cabos \textit{jumpers}, \textit{display} LED de sete segmentos (de quatro dígitos), mangueiras e terminais hidráulicos. Ademais, de contribuições dos membros da equipe, utilizamos uma fonte de 12V, cabos de tomada, uma lâmpada incandescente para o aquecimento,  e organizadores plásticos que serviram como estrutura para o projeto. Por fim, as aquisições extras necessárias consistiram de um módulo de relé de duas entradas para \textit{Arduino}, um sensor de temperatura DS18B20 à prova d’água, uma bomba hidráulica utilizada nos limpadores de para-brisa automotivos e também um sensor de umidade LM393 com sua sonda. Vale lembrar ainda que um dos membros forneceu também um módulo de \textit{ethernet} para o \textit{Arduino}, que apesar de suas funcionalidades não terem sido implementadas, está pronto para uso.\cite{igoe2007making}
 
 \begin{figure}[!ht]
 	\centering
@@ -74,16 +79,21 @@ O principal recurso de hardware utilizado no projeto foi o controlador \textit{A
 \end{figure}
 
 
+
+\section{Recursos De Hardware E Software}
+\subsection{Recursos de Hardware}
+
+O principal recurso de hardware utilizado no projeto foi o controlador \textit{Arduino}, fornecido aos alunos pelo professor da disciplina juntamente com uma placa de ensaio (protoboard), cabos \textit{jumpers}, \textit{display} LED de sete segmentos (de quatro dígitos), mangueiras e terminais hidráulicos. Ademais, de contribuições dos membros da equipe, utilizamos uma fonte de 12V, cabos de tomada, uma lâmpada incandescente para o aquecimento,  e organizadores plásticos que serviram como estrutura para o projeto. Por fim, as aquisições extras necessárias consistiram de um módulo de relé de duas entradas para \textit{Arduino}, um sensor de temperatura DS18B20 à prova d’água, uma bomba hidráulica utilizada nos limpadores de para-brisa automotivos e também um sensor de umidade LM393 com sua sonda. Vale lembrar ainda que um dos membros forneceu também um módulo de \textit{ethernet} para o \textit{Arduino}, que apesar de suas funcionalidades não terem sido implementadas, está pronto para uso.\cite{igoe2007making}
+
+
+
+
 \subsection{Recursos de Software}
 
 Graças ao fato de o \textit{Arduino} ser um hardware livre, o desenvolvimento para essa plataforma é bastante invetivado e difundido dentre estudantes, criadores e etc. Toda a programação do projeto foi feita na linguagem própria do \textit{Arduino} (C++ com pequenas modificações) utilizando a IDE fornecida pelos próprios desenvolvedores do hardware, a \textit{Arduino IDE}. Além disso, para organizar melhor, aumentar a eficiência do desenvolvimento e facilitar o trabalho em equipe, decidiu-se utilizar o sistema de controle de versão \textit{git} e hospedar o projeto no serviço \textit{Github}. Tanto a Arduino IDE, quanto a plataforma git são softwares de código-aberto e são oferecidas gratuitamente, funcionando na maioria dos sistemas operacionais modernos (\textit{Mac OS}, \textit{Windows} e \textit{Linux}).
     Apesar da linguagem C++ ser voltada ao desenvolvimento de projetos que envolvem a orientação a objetos, pode-se dizer que o nosso projeto foi desenvolvido de forma estruturada. A orientação à objetos foi utilizada apenas para a inicialização e calibragem do sensor de temperatura, e não foi utilizada como estratégia de resolução de problemas.
 
-\begin{figure}[!ht]
-	\centering
-		\includegraphics[width=0.8\textwidth]{arduinoIDE.jpg}
-		\caption{Captura de Tela da Arduino IDE executada em Linux.}
-\end{figure}
+
 
 \subsection{Viabilidade}
 
@@ -109,9 +119,16 @@ Este e outros códigos criados por esta equipe para a disciplina CSX20 de Oficin
 
 O software criado  para o projeto foi desenvolvido utilizando programação estruturada, e como é comum em projetos de \textit{Arduino}, o código pôde ser dividido em três etapas. A primeira etapa consiste em definir as constantes que serão utilizadas durante a execução do programa. Aqui define-se as portas do \textit{Arduino} que serão utilizadas e também algumas configurações do programa. É nessa etapa por exemplo em que será definida a temperatura de ativação do aquecimento. Na segunda etapa, é executada a função \texttt{setup()} do \textit{Arduino}. Essa função é executada apenas uma vez e ela serve para definir quais portas representam entradas e quais representam saídas de dados (para proteção do circuito), além de inicializar o sensor de temperatura para que este possa funcionar corretamente. Por fim, a etapa final é a execução da função \texttt{loop().} Esta é executada em uma laço de repetição indeterminado e é onde as funcionalidades do projeto estão implementas.
 
-    Esse laço de repetição nada mas é que uma função pré-exigida em todo programa para \textit{Arduino}, e é a parte principal do programa, sendo preciso ser executada em intervalos de tempo de curtíssima duração para que o \textit{display} LED funcione corretamente, uma vez que este não fica ligado constantemente, ele acende e apaga muito rapidamente de forma que o olho humano não seja capaz de perceber essa variação e perceba todos os dígitos acesos de forma contínua. Portanto, como era necessário que o \textit{loop} fosse executado com uma frequência alta, mas não era desejável que os sensores fossem monitorados em tal frequência, implementamos um programa que funciona em ciclos. Cada ciclo representa um número certo de iterações do \textit{loop} principal e portanto representa um certo intervalo de tempo. Dessa forma, podemos monitorar os sensores somente depois de executados um número propício de ciclos, sem que o \textit{display} seja afetado.
+    Esse laço de repetição nada mas é que uma função pré-exigida em todo programa para \textit{Arduino}, e é a parte principal do programa, sendo preciso ser executada em intervalos de tempo de curtíssima duração para que o \textit{display} LED funcione corretamente, uma vez que este não fica ligado constantemente, ele acende e apaga muito rapidamente de forma que o olho humano não seja capaz de perceber essa variação e perceba todos os dígitos acesos de forma contínua. Portanto, como era necessário que o \textit{loop} fosse executado com uma frequência alta, mas não era desejável que os sensores fossem monitorados em tal frequência, implementamos um programa que funciona em ciclos. Cada ciclo representa um número certo de iterações do \textit{loop} principal e portanto representa um certo intervalo de tempo. Dessa forma, podemos monitorar os sensores somente depois de executados um número propício de ciclos, sem que o \textit{display} seja afetado. \cite{arduinorobotics}
+
+		\begin{figure}[!ht]
+			\centering
+				\includegraphics[width=0.65\textwidth]{arduinoIDE.jpg}
+				\caption{Captura de Tela da Arduino IDE executada em Linux.}
+		\end{figure}
 
     Definido um número de ciclos a ser utilizado como base (ou intervalo base de tempo), o programa se encarrega de checar a leitura dos sensores de temperatura e de umidade do solo. A temperatura é então exibida no \textit{display} LED (a informação é repassada ao usuário) e o programa entra para a tomada de decisões: Se a temperatura ambiente estiver menor do que a definida na primeira etapa de execução do programa o relé referente à lampada incandescente será ativado e a mesma irá começar a esquentar o jardim, caso contrário este relé se mantêm desativado; Se a umidade do solo estiver abaixo do que o valor referente à um solo seco para aquela vegetação, o relé referente à bomba d’água será ativado e o jardim será irrigado até que o valor da umidade do solo esteja em um nível satisfatório.
+
 
 
 \subsection{Projeto de Hardware}
