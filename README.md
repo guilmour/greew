@@ -6,3 +6,4 @@
 Gianluigi Dal Toso [@gitoso] (http://github.com/gitoso) <br>
 Guilmour Rossi [@guilmour] (http://github.com/guilmour) <br>
 Samuel Henrique [@samueloph] (http://github.com/samueloph) <br>
+ d
